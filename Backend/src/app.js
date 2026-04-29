@@ -10,7 +10,7 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Snitch API" });
+  res.json({ message: "Welcome to Snitch" });
 });
 
 export default app;
