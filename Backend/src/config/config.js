@@ -17,6 +17,7 @@ if (!process.env.GOOGLE_CLIENT_SECRET) {
 }
 
 export const config = {
+  NODE_ENV: process.env.NODE_ENV || "development",
   PORT: process.env.PORT,
   MONGO_URI: process.env.MONGO_URI,
   JWT_SECRET: process.env.JWT_SECRET,
