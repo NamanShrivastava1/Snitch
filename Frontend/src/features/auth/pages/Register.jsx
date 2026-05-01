@@ -195,6 +195,14 @@ const Register = () => {
                 Register as a Seller
               </label>
             </div>
+            <div className="pt-2">
+              <a
+                href="/api/auth/google"
+                className="text-[#FFD700] hover:text-white transition-colors"
+              >
+                Continue with Google
+              </a>
+            </div>
 
             <div className="pt-2">
               <button
