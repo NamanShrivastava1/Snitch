@@ -2,7 +2,7 @@ import axios from "axios";
 
 const authApiInstance = axios.create({
   baseURL: "/api/auth", // For Proxy We use this, but only in Development. (http://localhost:5173/api/auth/api_name)
-  //   baseURL: "http://localhost:3000/api/auth",
+  // baseURL: "http://localhost:3000/api/auth",
   withCredentials: true,
 });
 

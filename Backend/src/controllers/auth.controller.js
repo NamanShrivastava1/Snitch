@@ -35,7 +35,7 @@ export const registerUser = async (req, res) => {
         .json({ message: "Email or contact already exists" });
     }
 
-    const user = userModel.create({
+    const user = await userModel.create({
       email,
       contact,
       password,
