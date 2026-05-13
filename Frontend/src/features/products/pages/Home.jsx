@@ -75,7 +75,7 @@ const Home = () => {
                   >
                     {/* Image Container */}
                     <div
-                      className="aspect-[4/5] overflow-hidden mb-6"
+                      className="aspect-4/5 overflow-hidden mb-6"
                       style={{ backgroundColor: "#f5f3f0" }}
                     >
                       <img
