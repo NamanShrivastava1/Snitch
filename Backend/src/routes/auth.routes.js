@@ -7,9 +7,11 @@ import {
   loginUser,
   registerUser,
   googleAuthCallback,
+  getMe,
 } from "../controllers/auth.controller.js";
 import passport from "passport";
 import { config } from "../config/config.js";
+import { authenticateUser } from "../middlewares/auth.middleware.js";
 
 const authRouter = Router();
 
@@ -26,6 +28,13 @@ authRouter.post("/register", validateRegisterUser, registerUser);
  * @access Public
  */
 authRouter.post("/login", validateLoginUser, loginUser);
+
+/**
+ * @route GET /api/auth/me
+ * @desc Get current logged in user
+ * @access Private
+ */
+authRouter.get("/me", authenticateUser, getMe);
 
 authRouter.get(
   "/google",
