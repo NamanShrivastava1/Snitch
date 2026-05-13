@@ -3,6 +3,7 @@ import multer from "multer";
 import { authenticateSeller } from "../middlewares/auth.middleware.js";
 import {
   createProduct,
+  getAllProducts,
   getAllProductsBySeller,
 } from "../controllers/product.controller.js";
 import { createProductValidator } from "../validators/product.validator.js";
@@ -34,5 +35,12 @@ productRouter.post(
  * @access Private (Seller only)
  */
 productRouter.get("/seller", authenticateSeller, getAllProductsBySeller);
+
+/**
+ * @route GET /api/products
+ * @desc Get all products
+ * @access Public
+ */
+productRouter.get("/", getAllProducts);
 
 export default productRouter;
