@@ -103,7 +103,7 @@ const Dashboard = () => {
                 return (
                   <div
                     onClick={() => {
-                      navigate(`/product/${product._id}`);
+                      navigate(`/seller/product/${product._id}`);
                     }}
                     key={product._id}
                     className="group cursor-pointer flex flex-col"
