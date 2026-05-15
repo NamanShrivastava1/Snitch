@@ -14,15 +14,11 @@ const Login = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const user = await handleLogin({
         email: formData.email,
@@ -34,123 +30,255 @@ const Login = () => {
         navigate("/seller/dashboard");
       }
     } catch (error) {
-      console.log("ERROR IN LOGIN : ", error);
+      console.error("Login failed", error);
     }
   };
 
   return (
-    <div className="h-screen w-full bg-[#050505] flex font-sans text-gray-200 overflow-hidden">
-      {/* Left Side: Brand Imagery */}
-      <div className="hidden lg:flex lg:w-1/2 h-full relative bg-[#0a0a0a] items-end justify-center overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=2000"
-          alt="Premium Fashion"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-2000 hover:scale-105 z-0"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-[#050505] via-[#050505]/40 to-transparent z-0"></div>
+    <>
+      {/* Google Fonts */}
+      <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+      />
 
-        <div className="relative z-10 p-12 text-center w-full">
-          <div className="inline-flex items-center justify-center w-14 h-14 border border-[#FFD700]/30 rounded-full mb-6 bg-[#050505]/40 backdrop-blur-md">
-            <span className="text-[#FFD700] text-xl font-light tracking-widest uppercase">
-              SN
+      <div
+        className="min-h-screen flex flex-col lg:flex-row selection:bg-[#C9A96E]/30"
+        style={{
+          backgroundColor: "#fbf9f6",
+          fontFamily: "'Inter', sans-serif",
+        }}
+      >
+        {/* ── LEFT: Editorial Image Panel ── */}
+        <div
+          className="hidden lg:flex lg:w-1/2 relative overflow-hidden"
+          style={{ backgroundColor: "#f5f3f0" }}
+        >
+          <img
+            src="/snitch_editorial.png"
+            alt="Snitch Fashion Editorial"
+            className="absolute inset-0 w-full h-full object-cover object-top"
+            style={{ filter: "brightness(0.97)" }}
+          />
+          {/* Subtle warm overlay */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(27,24,20,0.62) 0%, rgba(27,24,20,0.08) 45%, transparent 100%)",
+            }}
+          />
+          <div className="absolute inset-0 p-14 flex flex-col justify-between z-10">
+            {/* Brand */}
+            <span
+              className="text-sm font-medium tracking-[0.35em] uppercase"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                color: "#C9A96E",
+                letterSpacing: "0.35em",
+              }}
+            >
+              Snitch.
             </span>
+            {/* Editorial Headline */}
+            <div>
+              <p
+                className="text-5xl xl:text-6xl font-light leading-[1.08] text-white mb-5"
+                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              >
+                Welcome
+                <br />
+                <em>back.</em>
+              </p>
+              <p
+                className="text-sm font-light leading-relaxed max-w-xs"
+                style={{ color: "rgba(255,255,255,0.65)" }}
+              >
+                Sign in to explore the latest exclusive drops and manage your
+                aesthetic.
+              </p>
+            </div>
           </div>
-          <h2 className="text-4xl font-light text-white mb-4 tracking-tight">
-            Welcome Back.
-          </h2>
-          <p className="text-gray-400 max-w-md mx-auto text-base font-light leading-relaxed">
-            Continue your journey. Premium fabrics, flawless fits.
-          </p>
         </div>
-      </div>
 
-      {/* Right Side: Form Container */}
-      <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-8 sm:px-16 lg:px-24 overflow-y-auto no-scrollbar">
-        <div className="w-full max-w-md mx-auto py-8">
-          <div className="lg:hidden mb-6 inline-flex items-center justify-center w-10 h-10 border border-[#FFD700]/30 rounded-full bg-transparent">
-            <span className="text-[#FFD700] text-sm font-light tracking-widest uppercase">
-              SN
-            </span>
-          </div>
+        {/* ── RIGHT: Form Panel ── */}
+        <div
+          className="w-full lg:w-1/2 flex items-center justify-center min-h-screen px-8 sm:px-14 lg:px-20 py-16"
+          style={{ backgroundColor: "#fbf9f6" }}
+        >
+          <div className="w-full max-w-sm">
+            {/* Mobile brand mark */}
+            <div className="lg:hidden mb-14">
+              <span
+                className="text-sm tracking-[0.35em] uppercase"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  color: "#C9A96E",
+                }}
+              >
+                Snitch.
+              </span>
+            </div>
 
-          <div className="mb-10">
-            <h1 className="text-3xl font-light text-white tracking-tight mb-2">
-              Sign In
-            </h1>
-            <p className="text-gray-500 text-sm font-light">
-              Enter your details to access your account.
-            </p>
-          </div>
+            {/* Header */}
+            <div className="mb-14">
+              <p
+                className="text-[10px] uppercase tracking-[0.22em] mb-4 font-medium"
+                style={{ color: "#C9A96E" }}
+              >
+                Sign in to Snitch
+              </p>
+              <h1
+                className="text-[2.6rem] xl:text-5xl font-light leading-[1.1]"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  color: "#1b1c1a",
+                }}
+              >
+                Enter the Vault
+              </h1>
+            </div>
 
-          <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="space-y-5">
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="flex flex-col gap-10">
               {/* Email */}
-              <div className="relative">
+              <div className="flex flex-col gap-2">
                 <label
-                  className="block text-[10px] font-medium text-gray-400 uppercase tracking-widest mb-1"
-                  htmlFor="email"
+                  htmlFor="login-email"
+                  className="text-[10px] uppercase tracking-[0.18em] font-medium"
+                  style={{ color: "#7A6E63" }}
                 >
                   Email Address
                 </label>
                 <input
+                  id="login-email"
                   type="email"
-                  id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="john@example.com"
-                  className="w-full bg-transparent border-b border-[#2A2A2A] text-white px-0 py-2 focus:outline-none focus:border-[#FFD700] transition-colors placeholder-gray-700 text-sm"
                   required
+                  placeholder="hello@example.com"
+                  className="w-full bg-transparent outline-none py-3 text-sm transition-colors duration-300"
+                  style={{
+                    color: "#1b1c1a",
+                    borderBottom: "1px solid #d0c5b5",
+                    fontFamily: "'Inter', sans-serif",
+                  }}
+                  onFocus={(e) =>
+                    (e.target.style.borderBottomColor = "#C9A96E")
+                  }
+                  onBlur={(e) => (e.target.style.borderBottomColor = "#d0c5b5")}
                 />
               </div>
 
               {/* Password */}
-              <div className="relative">
-                <label
-                  className="block text-[10px] font-medium text-gray-400 uppercase tracking-widest mb-1"
-                  htmlFor="password"
-                >
-                  Password
-                </label>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <label
+                    htmlFor="login-password"
+                    className="text-[10px] uppercase tracking-[0.18em] font-medium"
+                    style={{ color: "#7A6E63" }}
+                  >
+                    Password
+                  </label>
+                  <a
+                    href="#"
+                    className="text-[10px] transition-colors duration-200"
+                    style={{ color: "#B5ADA3" }}
+                    onMouseEnter={(e) => (e.target.style.color = "#C9A96E")}
+                    onMouseLeave={(e) => (e.target.style.color = "#B5ADA3")}
+                  >
+                    Forgot password?
+                  </a>
+                </div>
                 <input
+                  id="login-password"
                   type="password"
-                  id="password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  placeholder="••••••••"
-                  className="w-full bg-transparent border-b border-[#2A2A2A] text-white px-0 py-2 focus:outline-none focus:border-[#FFD700] transition-colors placeholder-gray-700 text-sm"
                   required
+                  placeholder="••••••••"
+                  className="w-full bg-transparent outline-none py-3 text-sm transition-colors duration-300"
+                  style={{
+                    color: "#1b1c1a",
+                    borderBottom: "1px solid #d0c5b5",
+                    fontFamily: "'Inter', sans-serif",
+                  }}
+                  onFocus={(e) =>
+                    (e.target.style.borderBottomColor = "#C9A96E")
+                  }
+                  onBlur={(e) => (e.target.style.borderBottomColor = "#d0c5b5")}
                 />
               </div>
-            </div>
 
-            <div className="pt-2">
+              {/* Sign In Button */}
               <button
                 type="submit"
-                className="w-full bg-[#FFD700] hover:bg-[#e6c200] text-[#050505] font-semibold px-4 py-3 sm:py-3.5 transition-all text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(255,215,0,0.2)]"
+                className="w-full py-4 text-[11px] uppercase tracking-[0.25em] font-medium transition-all duration-300 mt-2"
+                style={{
+                  backgroundColor: "#1b1c1a",
+                  color: "#fbf9f6",
+                  fontFamily: "'Inter', sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#C9A96E";
+                  e.currentTarget.style.color = "#1b1c1a";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "#1b1c1a";
+                  e.currentTarget.style.color = "#fbf9f6";
+                }}
               >
                 Sign In
               </button>
 
-              <div className="mt-4 bg-white">
-                <ContinueWithGoogle />
+              {/* Divider */}
+              <div className="flex items-center gap-4">
+                <div
+                  className="flex-1 h-px"
+                  style={{ backgroundColor: "#e4e2df" }}
+                />
+                <span
+                  className="text-[10px] uppercase tracking-[0.15em]"
+                  style={{ color: "#B5ADA3" }}
+                >
+                  or
+                </span>
+                <div
+                  className="flex-1 h-px"
+                  style={{ backgroundColor: "#e4e2df" }}
+                />
               </div>
-            </div>
-          </form>
 
-          <p className="mt-8 text-center text-xs font-light text-gray-500">
-            Don't have an account?{" "}
-            <a
-              href="/register"
-              className="text-[#FFD700] hover:underline hover:text-[#e6c200] transition-colors font-medium"
-            >
-              Register
-            </a>
-          </p>
+              {/* Google SSO */}
+              <ContinueWithGoogle />
+
+              {/* Footer Link */}
+              <p
+                className="text-center text-[11px]"
+                style={{ color: "#B5ADA3" }}
+              >
+                Don&apos;t have an account?{" "}
+                <a
+                  href="/register"
+                  className="transition-colors duration-200"
+                  style={{
+                    color: "#7A6E63",
+                    textDecoration: "underline",
+                    textUnderlineOffset: "3px",
+                  }}
+                  onMouseEnter={(e) => (e.target.style.color = "#C9A96E")}
+                  onMouseLeave={(e) => (e.target.style.color = "#7A6E63")}
+                >
+                  Sign up
+                </a>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
