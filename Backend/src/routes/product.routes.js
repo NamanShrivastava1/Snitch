@@ -2,6 +2,7 @@ import { Router } from "express";
 import multer from "multer";
 import { authenticateSeller } from "../middlewares/auth.middleware.js";
 import {
+  addProductVariant,
   createProduct,
   getAllProducts,
   getAllProductsBySeller,
@@ -50,5 +51,17 @@ productRouter.get("/", getAllProducts);
  * @access Public
  */
 productRouter.get("/detail/:id", getProductDetails);
+
+/**
+ * @route GET /api/products/:productId/variants
+ * @desc Add a new varient to a product
+ * @access Private (seller only)
+ */
+productRouter.post(
+  "/:productId/variants",
+  authenticateSeller,
+  upload.array("images", 7),
+  addProductVariant,
+);
 
 export default productRouter;

@@ -72,3 +72,53 @@ export async function getProductDetails(req, res) {
     product,
   });
 }
+
+export async function addProductVariant(req, res) {
+  const productId = req.params.productId;
+
+  const product = await productModel.findOne({
+    _id: productId,
+    seller: req.user._id,
+  });
+  if (!productId) {
+    return res.status(404).json({
+      message: "Product not found",
+      success: false,
+    });
+  }
+
+  const files = req.files;
+  const images = [];
+  if (files || files.length !== 0) {
+    (
+      await Promise.all(
+        files.map(async (file) => {
+          const image = await uploadFile(file.buffer, file.originalname);
+          return image;
+        }),
+      )
+    ).map((image) => images.push(image));
+  }
+
+  const price = req.body.priceAmount;
+  const stock = req.body.stock;
+  const attributes = JSON.parse(req.body.attributes || "{}");
+
+  product.variants.push({
+    images,
+    price: {
+      amount: price || product.price.amount,
+      currency: req.body.priceCurrency || product.price.currency,
+    },
+    stock,
+    attributes,
+  });
+
+  await product.save();
+
+  return res.status(200).json({
+    message: "Product varient added successfully",
+    success: true,
+    product,
+  });
+}
