@@ -1,9 +1,9 @@
 import productModel from "../models/product.model.js";
 
-export const stockOfVariant = async (createProductValidator, variantID) => {
+export const stockOfVariant = async (productId, variantId) => {
   const product = await productModel.findOne({
     _id: productId,
-    "variants._id": variantID,
+    "variants._id": variantId,
   });
 
   const stock = product.variants.find(

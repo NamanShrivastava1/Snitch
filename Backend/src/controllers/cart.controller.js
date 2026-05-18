@@ -63,7 +63,7 @@ export const addToCart = async (req, res) => {
   if (quantity > stock) {
     return res.status(400).json({
       message: `Only ${stock} items left in stock`,
-      success: flase,
+      success: false,
     });
   }
 

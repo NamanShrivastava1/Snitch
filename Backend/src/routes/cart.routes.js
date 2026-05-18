@@ -12,7 +12,12 @@ const cartRouter = express.Router();
  * @argument VariantId - ID of variant to add
  * @argument quantity - Quantity of the item to add (optional, default: 1)
  */
-cartRouter.post("/", authenticateUser, validateAddToCart, addToCart);
+cartRouter.post(
+  "/add/:productId/:variantId",
+  authenticateUser,
+  validateAddToCart,
+  addToCart,
+);
 
 /**
  * @route POST /api/cart/
