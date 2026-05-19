@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useCart } from "../hook/usecart";
+import { useCart } from "../hook/useCart";
 import { Link, useNavigate } from "react-router";
 
 const tokens = {
@@ -23,7 +23,7 @@ const Cart = () => {
 
   const navigate = useNavigate();
 
-  console.log(cart)
+  // console.log(cart);
 
   const [quantities, setQuantities] = useState({});
 

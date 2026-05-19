@@ -6,7 +6,7 @@ export const useCart = () => {
   const dispatch = useDispatch();
 
   async function handleAddItem({ productId, variantId }) {
-    const data = await addItemToCart(productId, variantId);
+    const data = await addItem(productId, variantId);
     return data;
   }
 

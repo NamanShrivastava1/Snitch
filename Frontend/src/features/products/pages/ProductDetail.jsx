@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router";
 import { useProduct } from "../hook/useProduct";
-import { useCart } from "../../cart/hook/usecart";
+import { useCart } from "../../cart/hook/useCart.js";
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -47,7 +47,7 @@ const ProductDetail = () => {
     });
   }, [product, selectedAttributes]);
 
-  console.log({ product, activeVariant });
+  // console.log({ product, activeVariant });
 
   const availableAttributes = useMemo(() => {
     if (!product?.variants) return {};
@@ -113,7 +113,7 @@ const ProductDetail = () => {
     );
   }
 
-  console.log(product);
+  // console.log(product);
 
   // Fallbacks
   const displayImages =
@@ -199,8 +199,8 @@ const ProductDetail = () => {
                         (e.currentTarget.style.backgroundColor = "#fbf9f6")
                       }
                       onMouseLeave={(e) =>
-                        (e.currentTarget.style.backgroundColor =
-                          "rgba(251,249,246,0.8)")
+                      (e.currentTarget.style.backgroundColor =
+                        "rgba(251,249,246,0.8)")
                       }
                       aria-label="Previous image"
                     >
@@ -234,8 +234,8 @@ const ProductDetail = () => {
                         (e.currentTarget.style.backgroundColor = "#fbf9f6")
                       }
                       onMouseLeave={(e) =>
-                        (e.currentTarget.style.backgroundColor =
-                          "rgba(251,249,246,0.8)")
+                      (e.currentTarget.style.backgroundColor =
+                        "rgba(251,249,246,0.8)")
                       }
                       aria-label="Next image"
                     >
