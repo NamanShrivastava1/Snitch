@@ -12,7 +12,7 @@ export const addToCart = async (req, res) => {
   });
 
   if (!product) {
-    res.status(404).json({
+    return res.status(404).json({
       message: "Product or variant not found.",
       success: false,
     });
