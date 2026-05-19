@@ -44,14 +44,14 @@ export const addToCart = async (req, res) => {
       });
     }
 
-    await cartModel.findOneAndUpdate(
+    const updatedCart = await cartModel.findOneAndUpdate(
       {
         user: req.user._id,
         "items.product": productId,
         "items.variant": variantId,
       },
       { $inc: { "items.$.quantity": quantity } },
-      { new: true },
+      { returnDocument: "after" },
     );
 
     return res.status(200).json({
