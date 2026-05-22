@@ -1,6 +1,7 @@
 import cartModel from "../models/cart.model.js";
 import productModel from "../models/product.model.js";
 import { stockOfVariant } from "../dao/product.dao.js";
+import { getCartDetails } from "../dao/cart.dao.js";
 
 export const addToCart = async (req, res) => {
   const { productId, variantId } = req.params;
@@ -85,9 +86,7 @@ export const addToCart = async (req, res) => {
 export const getCart = async (req, res) => {
   const user = req.user;
 
-  let cart = await cartModel
-    .findOne({ user: user._id })
-    .populate("items.product");
+  let cart = await getCartDetails(user._id);
 
   if (!cart) {
     cart = await cartModel.create({ user: user._id });
