@@ -2,6 +2,7 @@ import cartModel from "../models/cart.model.js";
 import productModel from "../models/product.model.js";
 import { stockOfVariant } from "../dao/product.dao.js";
 import { getCartDetails } from "../dao/cart.dao.js";
+import { createOrder } from "../services/payment.service.js";
 
 export const addToCart = async (req, res) => {
   const { productId, variantId } = req.params;
@@ -154,5 +155,15 @@ export const incrementCartItemQuantity = async (req, res) => {
   return res.status(200).json({
     message: "Cart item quantity incremented successfully",
     success: true,
+  });
+};
+
+export const createOrderController = async (req, res) => {
+  const order = await createOrder({ amount: 1000, currency: "INR" });
+
+  return res.status(200).json({
+    message: "Order created successfully",
+    success: true,
+    order,
   });
 };

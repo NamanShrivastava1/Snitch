@@ -13,4 +13,6 @@ export const createOrder = async ({ amount, currency = "INR" }) => {
   };
 
   const order = await razorpay.orders.create(options);
+
+  return order;
 };

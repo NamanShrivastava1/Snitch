@@ -6,6 +6,7 @@ import {
 } from "../validators/cart.validator.js";
 import {
   addToCart,
+  createOrderController,
   getCart,
   incrementCartItemQuantity,
 } from "../controllers/cart.controller.js";
@@ -47,5 +48,10 @@ cartRouter.patch(
   validateIncrementCartItemQuantity,
   incrementCartItemQuantity,
 );
+
+/**
+ * @route PATCH /api/cart/payment/create/order
+ */
+cartRouter.post("/payment/create/order", authenticateUser, createOrderController);
 
 export default cartRouter;
