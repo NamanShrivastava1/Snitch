@@ -11,7 +11,7 @@ export const useCart = () => {
   const dispatch = useDispatch();
 
   async function handleAddItem({ productId, variantId }) {
-    const data = await addItem({ productId, variantId });
+    const data = await addItem(productId, variantId);
 
     return data;
   }
@@ -23,13 +23,13 @@ export const useCart = () => {
   }
 
   async function handleIncrementCartItem({ productId, variantId }) {
-    await incrementCartItemApi({ productId, variantId });
+    await incrementCartItemApi(productId, variantId);
     dispatch(incrementCartItem({ productId, variantId }));
   }
 
   async function handleCreateCartOrder() {
     const data = await createCartOrder();
-    return data;
+    return data.order;
   }
 
   return {

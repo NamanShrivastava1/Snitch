@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useCart } from "../hook/useCart";
 import { Link, useNavigate } from "react-router";
-// import { useRazorpay } from "react-razorpay";
+import { useRazorpay } from "react-razorpay";
 
 /* ─── Inline styles & tokens matching the "Avenue Montaigne" design system ─── */
 const tokens = {
@@ -26,7 +26,7 @@ const Cart = () => {
   const { handleGetCart, handleIncrementCartItem, handleCreateCartOrder } =
     useCart();
   const navigate = useNavigate();
-  // const { error, isLoading, Razorpay } = useRazorpay();
+  const { error, isLoading, Razorpay } = useRazorpay();
   const user = useSelector((state) => state.user);
 
   /* Local quantity state — key: cartItem._id, value: number */
@@ -69,11 +69,11 @@ const Cart = () => {
       description: "Test Transaction",
       order_id: order.id, // Generate order_id on server
       handler: async (response) => {
-        const isValid = await handleVerifyCartOrder(response);
+        // const isValid = await handleVerifyCartOrder(response);
 
-        if (isValid) {
-          navigate(`/order-success?order_id=${response?.razorpay_order_id}`);
-        }
+        // if (isValid) {
+        //   navigate(`/order-success?order_id=${response?.razorpay_order_id}`);
+        // }
       },
       prefill: {
         name: user?.fullname,
