@@ -23,8 +23,12 @@ const tokens = {
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  const { handleGetCart, handleIncrementCartItem, handleCreateCartOrder } =
-    useCart();
+  const {
+    handleGetCart,
+    handleIncrementCartItem,
+    handleCreateCartOrder,
+    handleVerifyCartOrder,
+  } = useCart();
   const navigate = useNavigate();
   const { error, isLoading, Razorpay } = useRazorpay();
   const user = useSelector((state) => state.user);
@@ -69,11 +73,10 @@ const Cart = () => {
       description: "Test Transaction",
       order_id: order.id, // Generate order_id on server
       handler: async (response) => {
-        // const isValid = await handleVerifyCartOrder(response);
-console.log(response)
-        // if (isValid) {
-        //   navigate(`/order-success?order_id=${response?.razorpay_order_id}`);
-        // }
+        const isValid = await handleVerifyCartOrder(response);
+        if (isValid) {
+          navigate(`/order-success?order_id=${response?.razorpay_order_id}`);
+        }
       },
       prefill: {
         name: user?.fullname,
