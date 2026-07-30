@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router";
-import { useProduct } from "../hook/useProduct";
+import { useProduct } from "../hook/useProduct.js";
 import { useCart } from "../../cart/hook/useCart.js";
 
 const ProductDetail = () => {
