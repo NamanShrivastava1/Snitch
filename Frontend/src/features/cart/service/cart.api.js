@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const cartApiInstance = axios.create({
-  baseURL: "/api/cart",
+  // baseURL: "/api/cart",
+  baseURL: "https://snitch-niw4.onrender.com/api/cart",
   withCredentials: true,
 });
 
