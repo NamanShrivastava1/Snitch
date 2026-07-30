@@ -91,7 +91,7 @@ export const googleAuthCallback = async (req, res) => {
 
   res.cookie("token", token);
 
-  return res.redirect("http://localhost:5173/");
+  return res.redirect("https://zevoura.vercel.app/");
 };
 
 export const getMe = async (req, res) => {
