@@ -13,7 +13,7 @@ import cartRouter from "./routes/cart.routes.js";
 const app = express();
 app.use(
   cors({
-    origin: "https://zevoura.vercel.app/",
+    origin: "https://zevoura.vercel.app",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
   }),
