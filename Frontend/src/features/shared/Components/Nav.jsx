@@ -17,7 +17,7 @@ const Nav = () => {
         className="text-sm font-medium tracking-[0.35em] uppercase hover:opacity-80 transition-opacity"
         style={{ fontFamily: "'Cormorant Garamond', serif", color: "#C9A96E" }}
       >
-        Snitch.
+        Zevoura.
       </Link>
       <div
         className="flex gap-6 items-center text-[10px] uppercase tracking-[0.2em] font-medium"
